@@ -1,0 +1,98 @@
+<!-- GOOGLE CHROME EXTENSION BY PRATIK ANAND
+www.pratikanand.com
+-->
+<HTML>
+<head>
+<style type="text/css">
+#tooltip{
+font-size:1px
+font-family:arial
+background-color:cyan;
+color:blue;
+}
+
+</style>
+<script type="text/javascript">
+
+function checkEvent(e) {
+ if (!e) var e = window.event;
+ if (e.target) targ = e.target;
+ else if (e.srcElement) targ = e.srcElement;
+ showHideToolTip(targ, e, e.type)
+}
+// This function shows/hides the tooltip
+function showHideToolTip (theDropDown, e, eType)
+{
+ var toolTipObj = new Object();
+ toolTipObj = document.getElementById("tt");     ///removing tooltip, adding tt
+ toolTipObj.value = theDropDown.options[theDropDown.selectedIndex].title;
+ //toolTipObj.innerHTML.style.fontsize=5px
+ if(eType == "mouseout"){
+ // toolTipObj.style.display = "none";          // variation here
+   } else
+ {
+  toolTipObj.style.display = "inline";
+  toolTipObj.style.top = e.y + 15;
+  toolTipObj.style.left = e.x + 10;
+ }
+}
+
+
+function hide(){document.getElementById('warn').style.display="none"}  //hiding text
+
+function warning(){
+	if(document.frm1.select.value=="related"){ 
+	 document.getElementById('warn').style.display="block"
+	 }
+	 else hide()
+	 	 }
+function search() {
+	s_var=document.frm1.txt1.value;  //search keyword
+	attr1=document.frm1.select.value
+   	switch(attr1){
+	case "music":txt="http://www.google.com/search?q=intitle:\"index.of\" (mp3|mp4) "+s_var 
+	break
+	case "ebooks":txt="http://www.google.com/search?q=intitle:\"index.of\" (pdf|doc) "+s_var 
+	break
+	case "def":txt="http://www.google.com/search?q=define:"+s_var
+	break
+	case "real":txt="http://www.google.com/search?tbs=mbl:1&hl=en&source=hp&q="+s_var
+	break
+	case "related":txt="http://www.google.com/search?q=related:"+s_var
+	break
+	default:txt="http://www.google.com/search?q="+s_var
+	}
+	window.open(txt);
+  }
+//intitle:"index.of" mp3 green.day
+//http://www.google.com/search?tbs=mbl:1&hl=en&source=hp&q=barkhadutt
+</script>
+
+</head>
+
+<body onload=hide()>
+<!--<a id="warn"><b>Include the full URI of the website</b></a> -->
+
+<form name="frm1">
+<input type="text" name="txt1" value="Welcome to Google With a Twist"id="tt" size=40>
+
+<input type="button" value="Find in Google" name="butt" onclick="search()" >
+<br>
+<select name="select" id="aloha" onchange="warning()" onMouseOver="checkEvent(this.event);" onMouseOut="checkEvent(this.event);" onMouseMove="checkEvent(this.event);">
+	<option selected>None</option>
+	<option value="music" title="Direct links of songs">Music</option>
+	<option value="ebooks" title="Direct search of pdfs">E-books</option>
+	<option value="def" title="Get word meaning">Definition</option>
+	<option value="real" title="Realtime search results">Realtime</option>
+	<option value="related" title="Find similar websites (Give full address)" >Related site</option>
+	
+</select>
+<input type="button" value="About" onclick='javascript:alert("Created by PRATIK ANAND \n email:pratik@pratikanand.com \n twitter & fb: pratikone ")'>
+<!--<p>
+<div id="tooltip">
+: Description here :
+</div>
+</p>
+-->
+</form>
+</body>

@@ -1,0 +1,12 @@
+{
+  "name": "Google with a twist",
+  "version": "0.1",
+  "description": "The first extension that I made.",
+  "browser_action": {
+    "default_icon": "icon.png",
+	"popup":"search.html"
+  },
+  "permissions": [
+    "http://api.flickr.com/"
+  ]
+}
